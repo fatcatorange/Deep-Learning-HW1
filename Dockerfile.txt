@@ -1,0 +1,19 @@
+# 指定基礎鏡像
+FROM python:3.8
+
+# 設置工作目錄
+WORKDIR /app
+
+# 將所需文件加入到容器中
+COPY requirements.txt .
+COPY start.sh .
+COPY your_app_directory/ /app/your_app_directory/
+
+# 安裝所需的套件
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 設置執行權限
+RUN chmod +x start.sh
+
+# 預設啟動命令
+CMD ["./start.sh"]
